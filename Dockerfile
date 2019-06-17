@@ -4,8 +4,11 @@ MAINTAINER Jhonatan Morais <jhonatanvinicius@gmail.com>
 
 # Instalação do httpd: https://github.com/CentOS/CentOS-Dockerfiles/tree/master/httpd/centos7
 RUN yum -y --setopt=tsflags=nodocs update && \
-    yum -y --setopt=tsflags=nodocs install httpd
-    
+    yum -y --setopt=tsflags=nodocs install httpd && \
+	systemctl enable httpd.service && \
+	touch /var/www/html/info.php && \
+	echo "<?php phpinfo(); ?>" >> /var/www/html/info.php
+
 
 # Script para evitar complemas de reinicialização no container
 ADD run-httpd.sh /run-httpd.sh
@@ -13,8 +16,8 @@ RUN chmod -v +x /run-httpd.sh
 
 #OCI + PHP7.2 Guide: 	http://bit.ly/2wYPIah
 # Instalacao do PHP e do seus repositorios 
-RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm && \
-	yum install -y http://rpms.remirepo.net/enterprise/remi-release-6.rpm && \
+RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
+	yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
 	yum install -y yum-utils && \
 	yum-config-manager --enable remi-php72 && \
 	yum install -y --skip-broken  php php-pecl-mcrypt php-cli php-gd php-curl php-mysqlnd php-ldap php-zip php-fileinfo php-xml php-intl php-mbstring php-opcache php-process systemtap-sdt-devel php-pear php-json php-devel php-common php-bcmath php-pdo && \
