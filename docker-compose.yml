@@ -10,6 +10,7 @@ services:
       - DOCUMENT_ROOT_CONTEXT=public
       - HTTPD_DOCUMENT_ROOT_CONTEXT=public
       - HTTPD_ALLOW_OVER_RIDE_OPTION=All
+      - HTTPD_APPLICATION_ENV_OPTION=development
          
       - LDAP_HOSTS=''
       - LDAP_BASE_DN=''
