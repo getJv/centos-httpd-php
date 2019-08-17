@@ -1,0 +1,29 @@
+version: '3'
+services:
+  backend:
+    image: getjv/centos-httpd
+    ports:
+      - "80:80"
+    volumes:
+      - C:\git\LOCAL_LARAVEL_ROOT_PATH:/var/www/html
+    environment:
+      - DOCUMENT_ROOT_CONTEXT=public
+      - HTTPD_DOCUMENT_ROOT_CONTEXT=public
+      - HTTPD_ALLOW_OVER_RIDE_OPTION=All
+      - HTTPD_APPLICATION_ENV_OPTION=development
+         
+      - LDAP_HOSTS=''
+      - LDAP_BASE_DN=''
+      - LDAP_USER_ATTRIBUTE=''
+      - LDAP_CONNECTION=default
+      - LDAP_ACCOUNT_SUFFIX=''
+    
+      - DB_CONNECTION=oracle
+      - DB_HOST=
+      - DB_SERVICE_NAME=''
+      - DB_DATABASE=''
+      - DB_USERNAME=''
+      - DB_PASSWORD=''
+
+
+    
