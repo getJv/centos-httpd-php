@@ -24,6 +24,7 @@ ADD oracle-instantclient18.5-devel-18.5.0.0.0-3.x86_64.rpm /home/oracle-instantc
 RUN	yum install -y /home/oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm /home/oracle-instantclient18.5-devel-18.5.0.0.0-3.x86_64.rpm && \
 	sh -c "echo /usr/lib/oracle/18.5/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf" && \
 	ldconfig && \
+	rm -R /home/oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm /home/oracle-instantclient18.5-devel-18.5.0.0.0-3.x86_64.rpm && \ 
 # Laravel Instalação e configuração
 	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
 	php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
@@ -43,7 +44,7 @@ WORKDIR /var/www/html/
 
 EXPOSE 80
 
-CMD ["/run-httpd.sh"]
+CMD ["sh","/run-httpd.sh"]
 
 
 
