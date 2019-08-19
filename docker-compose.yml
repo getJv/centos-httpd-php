@@ -6,13 +6,15 @@ services:
     ports:
       - "80:80"
     volumes:
-      - C:\git\visitante\source:/var/www/html
+      - C:\git\epl\visitante\source:/var/www/html
     environment:
       - HTTPD_DOCUMENT_ROOT_CONTEXT=public
       - HTTPD_ALLOW_OVER_RIDE_OPTION=All
+      - HTTPD_SERVER_NAME=local.dsv.epl.gov.br
       - HTTPD_APPLICATION_ENV_OPTION=development
       - HTTPD_ZF2_PATH=source/library
 
       
 
+     
      
