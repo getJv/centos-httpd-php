@@ -31,7 +31,7 @@ RUN	yum install -y /home/oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm 
 	echo "alias laravel='~/.composer/vendor/bin/laravel'" >> ~/.bashrc && \
 	alias laravel='~/.composer/vendor/bin/laravel' && \
 	sed -i 's+/var/www/html+/var/www/html/${HTTPD_DOCUMENT_ROOT_CONTEXT}+g' /etc/httpd/conf/httpd.conf && \
-	sed -i 's+AllowOverride None+AllowOverride ${HTTPD_ALLOW_OVER_RIDE_OPTION} \n SetEnv APPLICATION_ENV ${HTTPD_APPLICATION_ENV_OPTION}+g' /etc/httpd/conf/httpd.conf && \
+	sed -i 's+AllowOverride None+AllowOverride ${HTTPD_ALLOW_OVER_RIDE_OPTION} \n SetEnv APPLICATION_ENV ${HTTPD_APPLICATION_ENV_OPTION} \n SetEnv ZF2_PATH ${HTTPD_ZF2_PATH}+g' /etc/httpd/conf/httpd.conf && \
 	echo "LoadModule rewrite_module modules/mod_rewrite.so" >> /etc/httpd/conf.modules.d/00-base.conf
 
 # Script para evitar complemas de reinicialização no container
