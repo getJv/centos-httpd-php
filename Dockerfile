@@ -16,16 +16,17 @@ RUN yum install -y nano wget unzip git && \
 	yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm && \
 	yum install -y --setopt=tsflags=nodocs yum-utils && \
 	yum-config-manager --enable remi-php72 && \
-	yum install -y --setopt=tsflags=nodocs --skip-broken  php php-pecl-mcrypt php-cli php-gd php-curl php-mysqlnd php-ldap php-zip php-fileinfo php-xml php-intl php-mbstring php-opcache php-process systemtap-sdt-devel php-pear php-json php-devel php-common php-bcmath php-pdo php-pgsql php-oci8 && \
-
+	yum install -y --setopt=tsflags=nodocs --skip-broken  php php-pecl-mcrypt php-cli php-gd php-curl php-mysqlnd php-ldap php-zip php-fileinfo php-xml php-intl php-mbstring php-opcache php-process systemtap-sdt-devel php-pear php-json php-devel php-common php-bcmath php-pdo php-pgsql
+	
 # Oracle Client: http://bit.ly/2INtGwF | 
-ADD oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm /home/oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm
-ADD oracle-instantclient18.5-devel-18.5.0.0.0-3.x86_64.rpm /home/oracle-instantclient18.5-devel-18.5.0.0.0-3.x86_64.rpm
-RUN	yum install -y /home/oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm /home/oracle-instantclient18.5-devel-18.5.0.0.0-3.x86_64.rpm && \
-	sh -c "echo /usr/lib/oracle/18.5/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf" && \
-	ldconfig && \
+#RUN yum install -y --setopt=tsflags=nodocs --skip-broken  php-oci8 
+#ADD oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm /home/oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm
+#ADD oracle-instantclient18.5-devel-18.5.0.0.0-3.x86_64.rpm /home/oracle-instantclient18.5-devel-18.5.0.0.0-3.x86_64.rpm
+#RUN	yum install -y /home/oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm /home/oracle-instantclient18.5-devel-18.5.0.0.0-3.x86_64.rpm && \
+#	sh -c "echo /usr/lib/oracle/18.5/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf" && \
+#	ldconfig && \
 # Laravel Instalação e configuração
-	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
 	php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
 	composer global require laravel/installer && \
 	echo "alias laravel='~/.composer/vendor/bin/laravel'" >> ~/.bashrc && \
